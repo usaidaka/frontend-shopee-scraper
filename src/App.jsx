@@ -14,7 +14,11 @@ function App() {
     let interval;
     const checkStatus = async () => {
       try {
-        const res = await fetch('/api/login/status');
+        const res = await fetch('/api/login/status', {
+          headers: {
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
         const data = await res.json();
         
         if (data.status === 'completed') {
@@ -41,7 +45,12 @@ function App() {
   const handleStartLogin = async () => {
     setSetupStatus('logging_in');
     try {
-      await fetch('/api/login/start', { method: 'POST' });
+      await fetch('/api/login/start', { 
+        method: 'POST',
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
     } catch (e) {
       console.error(e);
     }
@@ -58,7 +67,11 @@ function App() {
     setStale(false);
 
     try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(keyword)}`);
+      const response = await fetch(`/api/search?q=${encodeURIComponent(keyword)}`, {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      });
       const data = await response.json();
 
       if (!response.ok) {
