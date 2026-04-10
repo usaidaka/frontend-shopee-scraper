@@ -105,12 +105,15 @@ function App() {
 
         {setupStatus === 'needs_login' && (
           <div className="flex flex-col items-center gap-4 bg-slate-900/50 p-6 rounded-2xl border border-slate-800">
-            <p className="text-slate-300">Anda belum memiliki sesi aktif. Silakan login ke Shopee terlebih dahulu untuk mulai melakukan scraping.</p>
+            <p className="text-slate-300">Sesi scraping Anda belum siap di laptop Host.</p>
+            <p className="text-slate-500 text-sm max-w-md">
+              Catatan: Menekan tombol di bawah akan membuka jendela browser Shopee <b>hanya di Mac Host (Laptop Utama)</b>. Silakan login di sana agar sistem bisa mulai bekerja dari IP Residential.
+            </p>
             <button
               onClick={handleStartLogin}
               className="px-8 py-3 bg-gradient-to-r from-orange-500 to-rose-600 hover:from-orange-400 hover:to-rose-500 rounded-xl font-semibold transition-all shadow-lg shadow-orange-500/20"
             >
-              Login Shopee & Mulai Sesi
+              Login Shopee di Mac Host
             </button>
           </div>
         )}
@@ -118,8 +121,10 @@ function App() {
         {setupStatus === 'logging_in' && (
           <div className="flex flex-col items-center gap-4 bg-slate-900/50 p-6 rounded-2xl border border-slate-800 border-orange-500/30">
             <div className="w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-orange-300 font-semibold text-lg">Mempersiapkan Sesi & Stabilisasi...</p>
-            <p className="text-slate-400 text-sm">Mohon cek terminal backend/jendela browser. Proses ini memakan waktu tunggu hingga browser tertutup otomatis.</p>
+            <p className="text-orange-300 font-semibold text-lg">Proses Login Sedang Berjalan...</p>
+            <p className="text-slate-400 text-sm max-w-sm">
+              Cek jendela Camoufox yang terbuka di <b>Mac Host</b>. Silakan login & selesaikan captcha di sana sampai browser tertutup otomatis.
+            </p>
           </div>
         )}
 
