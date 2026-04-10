@@ -21,9 +21,10 @@ function App() {
           setSetupStatus('ready');
         } else if (data.status === 'running') {
           setSetupStatus('logging_in');
-        } else {
-          // Hanya revert jika kita tidak sedang dalam proses ancang-ancang login
-          setSetupStatus(prev => prev === 'logging_in' ? 'logging_in' : 'needs_login');
+        } else if (data.status === 'not_started') {
+          // Hanya revert jika kita tidak sedang baru saja menekan tombol
+          // (Atau biarkan saja revert, flicker kecil lebih baik daripada deadlock)
+          setSetupStatus('needs_login');
         }
       } catch (e) {
         console.error(e);
