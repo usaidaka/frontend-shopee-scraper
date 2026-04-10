@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://persuader-directly-upstate.ngrok-free.dev/api/:path*"
+    }
+  ]
+}
