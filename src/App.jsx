@@ -20,9 +20,11 @@ function App() {
         if (data.status === 'completed') {
           setSetupStatus('ready');
         } else if (data.status === 'running') {
-          setSetupStatus('logging_in');
+          // Hanya izinkan masuk ke mode logging_in jika belum ready
+          setSetupStatus(prev => prev === 'ready' ? 'ready' : 'logging_in');
         } else if (data.status === 'not_started') {
-          setSetupStatus('needs_login');
+          // Jangan pernah kembali ke needs_login jika kita sudah ready
+          setSetupStatus(prev => prev === 'ready' ? 'ready' : 'needs_login');
         }
       } catch (e) {
         console.error(e);
