@@ -16,16 +16,17 @@ function App() {
       try {
         const res = await fetch('/api/login/status');
         const data = await res.json();
+        
         if (data.status === 'completed') {
           setSetupStatus('ready');
         } else if (data.status === 'running') {
           setSetupStatus('logging_in');
         } else {
-          setSetupStatus('needs_login');
+          // Hanya revert jika kita tidak sedang dalam proses ancang-ancang login
+          setSetupStatus(prev => prev === 'logging_in' ? 'logging_in' : 'needs_login');
         }
       } catch (e) {
         console.error(e);
-        setSetupStatus('needs_login');
       }
     };
 
