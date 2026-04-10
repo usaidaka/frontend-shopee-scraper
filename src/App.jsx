@@ -22,12 +22,12 @@ function App() {
         } else if (data.status === 'running') {
           setSetupStatus('logging_in');
         } else if (data.status === 'not_started') {
-          // Hanya revert jika kita tidak sedang baru saja menekan tombol
-          // (Atau biarkan saja revert, flicker kecil lebih baik daripada deadlock)
           setSetupStatus('needs_login');
         }
       } catch (e) {
         console.error(e);
+        // Jika gagal konek (ngrok mati / network error), anggap saja butuh login/refresh
+        setSetupStatus('needs_login');
       }
     };
 
