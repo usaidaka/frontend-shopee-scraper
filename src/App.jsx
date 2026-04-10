@@ -28,8 +28,8 @@ function App() {
         }
       } catch (e) {
         console.error(e);
-        // Jika gagal konek (ngrok mati / network error), anggap saja butuh login/refresh
-        setSetupStatus('needs_login');
+        // Jika gagal konek atau dapat 504 HTML dari Vercel, jangan reset kalau sudah ready
+        setSetupStatus(prev => prev === 'ready' ? 'ready' : 'needs_login');
       }
     };
 
